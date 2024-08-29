@@ -40,14 +40,14 @@ services:
     container_name: db-container
     image: mysql
     environment:
-      - MYSQL_DATABASE: "db"
-      - MYSQL_USER: "msaleh"
-      - MYSQL_PASSWORD: "123456"
-      - MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: "db"
+      MYSQL_USER: "msaleh"
+      MYSQL_PASSWORD: "123456"
+      MYSQL_ROOT_PASSWORD: "123456"
     networks:
       - weather-network
     volumes:
-      - ./data:
+      - ./database:/var/lib/mysql
 
 networks:
   weather-network:
