@@ -1,0 +1,54 @@
+version: '3'
+services:
+  auth:
+    container_name: auth-container
+    restart: on-failure
+    depends_on:
+      - db
+    build: ./auth
+    environment:
+      - DB_HOST: db
+      - DB_USER: msaleh
+      - DB_PASSWORD: 123456
+      - DB_NAME: weather-app
+    ports:
+      - 8080
+    networks:
+      - weather-network
+
+  ui:
+    container_name: ui-website-container
+    build: ./UI
+    depends_on:
+      - auth
+    restart: alaways
+    ports:
+      - "8080:3000"
+    networks:
+      - weather-network
+
+  weather:
+    container_name: weather-container
+    restart: alaways
+    build: ./weather
+    ports:
+      - 5000
+    networks:
+      - weather-network
+
+  db:
+    container_name: db-container
+    image: mysql
+    environment:
+      - MYSQL_DATABASE: db
+      - MYSQL_USER: msaleh
+      - MYSQL_PASSWORD: 123456
+      - MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - weather-network
+    volumes:
+      - ./data:
+
+networks:
+  weather-network:
+    type: bridge
