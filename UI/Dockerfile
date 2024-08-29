@@ -1,8 +1,10 @@
-FROM node:17
-WORKDIR /usr/src/app
-COPY package*.json ./
+FROM node:alpine
+
+WORKDIR /ui
+COPY package*.json .
 RUN npm install
 COPY . .
 EXPOSE 3000
-ENTRYPOINT ["node"]
+
+ENTRYPOINT [ "node" ]
 CMD [ "app.js" ]
