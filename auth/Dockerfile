@@ -1,5 +1,5 @@
 #Build Stage
-FROM go:alpine AS builder
+FROM golang:alpine AS builder
 WORKDIR /go/src/app
 COPY src/ .
 WORKDIR /go/src/app/main
