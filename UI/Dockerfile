@@ -1,7 +1,7 @@
 FROM node:alpine
 
 WORKDIR /ui
-COPY ./package*.json .
+COPY ./package*.json /ui/
 RUN npm install
 COPY . .
 EXPOSE 3000
