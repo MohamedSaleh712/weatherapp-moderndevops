@@ -2,7 +2,7 @@ version: '3'
 services:
   auth:
     container_name: auth-container
-    restart: on-failure
+    restart: always
     depends_on:
       - db
     build: ./auth
